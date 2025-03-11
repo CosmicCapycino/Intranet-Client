@@ -1,4 +1,5 @@
 <template>
+  <NavBar v-if="userStore.authenticated"></NavBar>
   <router-view/>
 </template>
 
@@ -9,7 +10,9 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 250px auto;
 }
 
 @font-face {
@@ -17,3 +20,9 @@
   src: url('~@/assets/nunito.ttf');
 }
 </style>
+
+<script setup>
+import NavBar from './components/NavBar.vue';
+import { useUserStore } from './stores/userStore';
+const userStore = useUserStore();
+</script>
