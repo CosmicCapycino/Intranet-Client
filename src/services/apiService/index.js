@@ -1,9 +1,11 @@
 import axios from "axios";
 import userRoutes from "./routes/userRoutes";
 import { reactive } from "vue";
+import contactRoutes from "./routes/contactRoutes";
 
 const axiosInstance = axios.create();
 const user = new userRoutes(axiosInstance);
+const contacts = new contactRoutes(axiosInstance);
 const auth = reactive();
 
 function configureService(apiConfig) {
@@ -19,6 +21,7 @@ function install(app, useAuth = false, config) {
         console.log("Enabling auth...");
         this.auth = app.config.globalProperties.$auth;
         console.log(this.auth.cookies.get("token"));
+        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${this.auth.cookies.get("token")}`;
     }
 
     configureService(config)
@@ -26,7 +29,8 @@ function install(app, useAuth = false, config) {
 
 const apiService = {
     install,
-    user
+    user,
+    contacts
 }
 
 export default apiService;

@@ -2,16 +2,22 @@
     <div id="nav-bar">
         <ul id="nav-links">
             <li class="link">
-                <v-icon icon="mdi-home"></v-icon>
-                <p>Home</p>
+                <RouterLink to="home" class="link">
+                    <v-icon icon="mdi-home"></v-icon>
+                    <p>Home</p>
+                </RouterLink>
             </li>
             <li class="link">
-                <v-icon icon="mdi-newspaper-variant"></v-icon>
-                <p>Social</p>
+                <RouterLink to="social" class="link">
+                    <v-icon icon="mdi-newspaper-variant"></v-icon>
+                    <p>Social</p>
+                </RouterLink>
             </li>
             <li class="link">
-                <v-icon icon="mdi-contacts"></v-icon>
-                <p>Contacts</p>
+                <RouterLink to="contacts" class="link">
+                    <v-icon icon="mdi-contacts"></v-icon>
+                    <p>Contacts</p>                    
+                </RouterLink>
             </li>
             <li class="link">
                 <v-icon icon="mdi-calendar"></v-icon>
@@ -44,11 +50,16 @@
     flex-direction: row;
     font-size: 1.5rem;
     width: 100% !important;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .link p {
     margin-left: 10px;
+}
+
+.link a {
+    text-decoration: none;
+    color: #FFFFFF;
 }
 </style>
 
