@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { useUserStore } from "@/stores/userStore"
+
 export default {
     name: "LoginView",
     data() {
@@ -66,12 +68,18 @@ export default {
     },
     methods: {
         async login() {
+            const store = useUserStore();
             let form = new FormData();
             form.append('username', this.loginForm.username);
             form.append('password', this.loginForm.password);
 
             let data = await this.$apiService.user.login(form);
             this.$auth.setToken(data.token);
+
+            store.setProfile(data.profile);
+            store.setAuthenticated(true);
+
+            this.$router.push({name: 'home'})
         }
     }
 }
