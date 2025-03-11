@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
 
 import { useUserStore } from '@/stores/userStore'
+import ContactsView from '@/views/Pages/ContactsView.vue'
 
 const routes = [
   {
@@ -17,6 +18,14 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView
+  },
+  {
+    path: '/contacts',
+    name: 'contacts',
+    component: ContactsView,
+    meta: {
+      requiresAuth: true
+    }    
   }
 ]
 
@@ -27,13 +36,8 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
   const store = useUserStore();
-  if (
-    // make sure the user is authenticated
-    !store.authenticated &&
-    // ❗️ Avoid an infinite redirect
-    to.name !== 'login'
+  if (!store.authenticated && to.name !== 'login'
   ) {
-    // redirect the user to the login page
     return { name: 'login' }
   }
 })
