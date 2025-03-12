@@ -34,13 +34,12 @@ const vuetify = createVuetify({
 const app = createApp(App);
 
 fetch(process.env.BASE_URL + 'config.json').then((response) => response.json()).then((config) => {
-  // Everything below here setups up the container regardless of if auth is enabled
-  // TODO: Add auth to axios
-  app.use(pinia)
+  app.use(pinia);
   app.use(router);
+  // Everything below here setups up the container regardless of if auth is enabled
   app.use(cookies, { expires: '7d'})
   app.use(auth)
-  app.use(apiService, true, config.apiServer)
+  app.use(apiService, true, config.apiServer);
   app.use(vuetify);
   app.mount('#app');
 });

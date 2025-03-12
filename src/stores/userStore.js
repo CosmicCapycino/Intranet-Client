@@ -7,7 +7,8 @@ export const useUserStore = defineStore('user', {
             forename: "",
             surname: "",
             username: ""
-        }
+        },
+        token: ""
     }),
     getters: {
 
@@ -20,6 +21,9 @@ export const useUserStore = defineStore('user', {
         },
         setAuthenticated(status) {
             this.authenticated = status;
+        },
+        setToken(token) {
+            this.token = token;
         }
     }
 })
