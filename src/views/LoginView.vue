@@ -74,8 +74,10 @@ export default {
             form.append('password', this.loginForm.password);
 
             let data = await this.$apiService.user.login(form);
-            this.$auth.setToken(data.token);
 
+            this.$cookies.set("token", data.token);
+            
+            store.setToken(data.token);
             store.setProfile(data.profile);
             store.setAuthenticated(true);
 
